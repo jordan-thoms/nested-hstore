@@ -1,5 +1,4 @@
 # Dependencies
-require 'activerecord-postgres-hstore'
 require 'active_support/all'
 
 # Self
