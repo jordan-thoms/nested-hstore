@@ -1,23 +1,16 @@
 module ActiveRecord
   module Coders
-    class NestedHstore < Hstore
-      def initialize(default=nil)
-        super(default)
+    class NestedHstore
+      def initialize
         @nested_serializer = ::NestedHstore::Serializer.new
       end
 
-      private
-
-      def to_hstore obj
-        super(@nested_serializer.serialize(obj))
+      def dump(obj)
+        @nested_serializer.serialize(obj)
       end
 
-      def from_hstore hstore
-        if ActiveRecord::VERSION::MAJOR >= 4 && hstore.is_a?(Hash)
-          @nested_serializer.deserialize(hstore)
-        else
-          @nested_serializer.deserialize(super)
-        end
+      def from_hstore(hstore)
+        @nested_serializer.deserialize(hstore)
       end
     end
   end

@@ -199,4 +199,19 @@ describe NestedHstore::Serializer do
       it('deserializes') { it_deserializes }
     end
   end
+
+  context 'with nil' do
+    before do
+      @deserialized = nil
+      @serialized = nil
+    end
+    
+    describe '#serialize' do
+      it('serializes') { it_serializes }
+    end
+
+    describe '#deserialize' do
+      it('deserializes') { it_deserializes }
+    end
+  end
 end
